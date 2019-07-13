@@ -3,16 +3,20 @@ $(document).ready(function () {
     //creating date picker
     $('.datepicker').datepicker();
     $("select").formSelect();
+    var selectedState;
+
     //button function to pull data 
-    $('.btn').on('click', function (event) {
+
+    $(document).on('click', '#submit', function (event) {
 
         // (in addition to clicks). Prevents the page from reloading on form submit.
         event.preventDefault();
+        selectedState = $("#state option:selected").text();
 
-        var location = $('#zipCode').val().trim();
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=coffee&location=" + location + "&limit=10&sort_by=distance&radius=6440";
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + selectedState + "&limit=10&sort_by=rating";
 
+        console.log(queryURL);
         //ajax call to obtain data
         $.ajax({
             url: queryURL,
@@ -22,14 +26,12 @@ $(document).ready(function () {
             method: "GET",
         }).then(function (response) {
 
-            var results = response.businesses
-
-            // Looping over every result item
-            for (var i = 0; i < results.length; i++) {
-
+            for(var i =0; i < response.businesses.length; i++)
+            {var results = response.businesses[i].name;
+            console.log(results);
             var resultInput = $('<p>');
             var result = resultInput.append(results);
-            $('#displayResults').append(result);
+            $('.section').append(result);
             }
         });
     });
