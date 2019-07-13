@@ -17,23 +17,23 @@
             <div class="row">
                 <div class="col s6">
                     <label for="firstName">First Name</label>
-                    <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                    <input type="text" id="firstName" placeholder="First Name">
                 </div>
                 <div class="col s6">
                     <label for="lastName">Last Name</label>
-                    <input type="password" class="form-control" id="lastName" placeholder="Last Name">
+                    <input type="password" id="lastName" placeholder="Last Name">
                 </div>
             </div>
             <!--Form for desired location-->
             <div class="row">
                 <div class="col s6">
                     <label for="city">City</label>
-                    <input type="text" class="form-control" id="city">
+                    <input type="text" id="city">
                 </div>
                 <div class="col s4">
                     <label for="state">State</label>
-                    <select id="state" class="form-control">
-                        <option selected>Choose...</option>
+                    <select id="state">
+                        <option value="" disabled selected>Choose...</option>
                         <option value="AK">Alaska</option>
                         <option value="AL">Alabama</option>
                         <option value="AR">Arkansas</option>
@@ -89,17 +89,33 @@
                 </div>
                 <div class="col s2">
                     <label for="zipCode">Zip</label>
-                    <input type="text" class="form-control" id="zipCode">
+                    <input type="number" id="zipCode" maxlength="5">
                 </div>
             </div>
-
-            <!--Date Picker-->
-            <input type="text" class="datepicker">
-
+            <div class="row">
+                <div class="col s6">
+                    <!--Date Picker-->
+                    <label for="zipCode">Date</label>
+                    <input type="text" class="datepicker">
+                </div>
+            </div>
             <!--Submit button for the search form-->
-            <button type="submit" class="btn btn-primary">Search</button>
-
+            <div class="row">
+                <div class="col s6">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
         </form>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col 12">
+                <div class="section">
+
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>

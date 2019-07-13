@@ -1,3 +1,4 @@
 $(document).ready(function(){
-    $('.datepicker').datepicker();
+    $(".datepicker").datepicker();
+    $("select").formSelect();
 });
