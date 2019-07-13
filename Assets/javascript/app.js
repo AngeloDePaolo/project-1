@@ -27,11 +27,13 @@ $(document).ready(function () {
         }).then(function (response) {
 
             for(var i =0; i < response.businesses.length; i++)
-            {var results = response.businesses[i].name;
-            console.log(results);
+            {
+            var name = response.businesses[i].name;
+            var rating = response.businesses[i].rating;
             var resultInput = $('<p>');
-            var result = resultInput.append(results);
-            $('.section').append(result);
+            var nameResults = resultInput.append(name + " ");
+            var ratingResults = resultInput.append('rating: ' + rating);
+            $('.section').append(resultInput);
             }
         });
     });
