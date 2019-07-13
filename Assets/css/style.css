@@ -33,6 +33,6 @@ label {
     color: purple;
 }
 
-#firstName, #lastName, #city, #select-wrapper, #zipCode, .datepicker {
+#firstName, #lastName, #city, #select-wrapper, #zipCode, .datepicker, .select-dropdown.dropdown-trigger {
     color: purple;
 }
