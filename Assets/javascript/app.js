@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     //creating date picker
     $('.datepicker').datepicker();
-
+    $("select").formSelect();
     //button function to pull data 
     $('.btn').on('click', function (event) {
 
@@ -34,5 +34,3 @@ $(document).ready(function () {
         });
     });
 });
-
-
