@@ -12,9 +12,12 @@ $(document).ready(function () {
         // (in addition to clicks). Prevents the page from reloading on form submit.
         event.preventDefault();
         selectedState = $("#state option:selected").text();
+        selectedCity = $("#city").val();
+        selectedZip = $('#zipCode').val();
 
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + selectedState + "&limit=10&sort_by=rating";
+
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location="+ selectedCity + selectedState + " " + selectedZip + "&limit=10&sort_by=rating";
 
         console.log(queryURL);
         //ajax call to obtain data
