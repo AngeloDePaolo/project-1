@@ -36,3 +36,11 @@ label {
 #firstName, #lastName, #city, #select-wrapper, #zipCode, .datepicker, .select-dropdown.dropdown-trigger {
     color: purple;
 }
+
+.card .card-image img {
+width: 200px;
+}
+
+.card .card-content {
+width: 100%;
+}
