@@ -29,28 +29,14 @@ $(document).ready(function () {
             method: "GET",
         }).then(function (response) {
 
-            for(var i =0; i < response.businesses.length; i++)
-            {
-            var name = response.businesses[i].name;
-            var rating = response.businesses[i].rating;
-            var img = response.businesses[i].image_url;
-            var address = response.businesses[i].location.city + " " + response.businesses[i].location.state + " " + response.businesses[i].location.address1 + " " + response.businesses[i].location.zip_code;
-            var phoneNumber = response.businesses[i].display_phone;
-           
-            //create new div as row
-            var contentInfo = $('<p>');
-            //new div to put content into
-    
-            //new
-            //img for card
-            // var imgResults = contentInfo.append('<img src =' + img + '>' + '<br>');
-            // var nameResults = contentInfo.append(name + " " + '<br>');
-            // var addressResults = contentInfo.append(address + " " + '<br>');
-            // var ratingResults = contentInfo.append('rating: ' + rating + " " + '<br>');
-            // var phoneNumberResults = contentInfo.append(phoneNumber + " " + '<br>');
+            for (var i = 0; i < response.businesses.length; i++) {
+                var name = response.businesses[i].name;
+                var rating = response.businesses[i].rating;
+                var img = response.businesses[i].image_url;
+                var address = response.businesses[i].location.city + " " + response.businesses[i].location.state + " " + response.businesses[i].location.address1 + " " + response.businesses[i].location.zip_code;
+                var phoneNumber = response.businesses[i].display_phone;
 
-            $('#content').append('<div class="content col s12 m6 l4" >'+'<div class="card"><div class="card-image"><img src="' + img + '"></div>'+'<div class="card-content">'+'<span class="card-title grey-text text-darken-4">' + name + '</span>'+'<p class="card-subtitle grey-text text-darken-2">' + rating + '</p>'+'<p><a href="' + address + '" class="modal-trigger">View More</a></p>'+'</div></div></div>');
-
+                $('#content').append('<div id="contentRow" class="row">' + '<div class="card horizontal">' + '<div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + img + '"></div>' + '<div class="card-content">' + '<span class="card-title activator grey-text text-darken-4">' + name + '<i class="material-icons right">More Info</i></span>' + '<div class="rating"><p>Rating:' + rating + ' Stars</p></div>' + '<div class="number"><p>Number: ' + phoneNumber + '</p></div>' + '<div class="address"><p>Address: ' + address + '</p></div></div>' + '<div class="card-reveal"><span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span><p>Here is some more information about this product that is only revealed once clicked on.</p></div></div></div>');
             }
         });
     });
