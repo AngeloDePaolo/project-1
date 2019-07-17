@@ -12,9 +12,12 @@ $(document).ready(function () {
         // (in addition to clicks). Prevents the page from reloading on form submit.
         event.preventDefault();
         selectedState = $("#state option:selected").text();
+        selectedCity = $("#city").val();
+        selectedZip = $('#zipCode').val();
 
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + selectedState + "&limit=10&sort_by=rating";
+
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location="+ selectedCity + selectedState + " " + selectedZip + "&limit=10&sort_by=rating";
 
         console.log(queryURL);
         //ajax call to obtain data
@@ -35,53 +38,19 @@ $(document).ready(function () {
             var phoneNumber = response.businesses[i].display_phone;
            
             //create new div as row
-            var contentRow = $('div');
-            contentRow.addClass('row');
-            
-            //appened row to content container
-            $('#content').append(contentRow);
-
+            var contentInfo = $('<p>');
             //new div to put content into
-            var contentInfo = $('div');
-            contentInfo.addClass('card horizontal');
-            contentRow.append(contentInfo);
-
+    
             //new
-
-
             //img for card
-            var imgResults = content.append('<div class="card-image waves-effect waves-block waves-light"> <img class="activator" src='+ img + '> </div>');
+            // var imgResults = contentInfo.append('<img src =' + img + '>' + '<br>');
+            // var nameResults = contentInfo.append(name + " " + '<br>');
+            // var addressResults = contentInfo.append(address + " " + '<br>');
+            // var ratingResults = contentInfo.append('rating: ' + rating + " " + '<br>');
+            // var phoneNumberResults = contentInfo.append(phoneNumber + " " + '<br>');
 
-            // var nameResults = content.append(name + " " + '<br>');
-            // var addressResults = resultInput.append(address + " " + '<br>');
-            // var ratingResults = resultInput.append('rating: ' + rating + " " + '<br>');
-            // var phoneNumberResults = resultInput.append(phoneNumber + " " + '<br>');
+            $('#content').append('<div class="content col s12 m6 l4" >'+'<div class="card"><div class="card-image"><img src="' + img + '"></div>'+'<div class="card-content">'+'<span class="card-title grey-text text-darken-4">' + name + '</span>'+'<p class="card-subtitle grey-text text-darken-2">' + rating + '</p>'+'<p><a href="' + address + '" class="modal-trigger">View More</a></p>'+'</div></div></div>');
 
-        //     <div class="card horizontal">
-        //        <div class="card-image waves-effect waves-block waves-light">
-        //            <img class="activator" src="assets/images/Team Logo.jpg">
-        //        </div>
-        //        <div class="card-content">
-        //            <span class="card-title activator grey-text text-darken-4">Restaurant Name
-        //                    <i class="material-icons right">more_vert</i>
-        //            </span>
-        //            <div class="rating">
-        //                <p>Rating: 5 Stars</p>
-        //            </div>
-        //            <div class="number">
-        //                <p>Number: 000-000-0000</p>
-        //            </div>
-        //            <div class="address">
-        //                <p>Address: 1231 adasd st. bellevue, wa 98008</p>
-        //            </div>
-        //        </div>
-        //        <div class="card-reveal">
-        //            <span class="card-title grey-text text-darken-4">Card Title<i
-        //                    class="material-icons right">close</i></span>
-        //            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        //        </div>
-        //    </div>
-            $('#content').append(content);
             }
         });
     });

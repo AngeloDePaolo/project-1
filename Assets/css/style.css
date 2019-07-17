@@ -37,8 +37,10 @@ label {
     color: purple;
 }
 
+
 .card .card-image img {
 width: 200px;
+height: 200px;
 }
 
 .card .card-content {
