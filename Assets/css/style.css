@@ -1,0 +1,45 @@
+nav {
+    background-color: purple;
+    box-shadow: 0 2px 2px 0 rgba(150, 150, 150, 0.14), 0 3px 1px -2px rgba(150, 150, 150, 0.12), 0 1px 5px 0 rgba(150, 150, 150, 0.2);
+   }
+   .searchSection {
+       background-image: url("../images/cool-background\ \(1\).png");
+       background-repeat: no-repeat;
+       background-size: 100%;
+   }
+   .container {
+       background-color: rgb(255, 255, 255, 0.4);
+   }
+   .searchForm {
+       padding: 50px 20px 50px 20px;
+   }
+   div.row {
+       margin: 0px;
+   }
+   .btn {
+       background-color: purple;
+   }
+   label {
+       color: black;
+   }
+   ::placeholder {
+       color: purple;
+   }
+   #firstName, #lastName, #city, #select-wrapper, #zipCode, .datepicker, .select-dropdown.dropdown-trigger {
+       color: purple;
+   }
+   .weatherIcons {
+       width: 45px;
+       position: relative;
+       margin-bottom: -5px;
+   }
+   .lineBreak {
+       margin-bottom: 12px;
+       
+   }
+   .dayBreak {
+       margin-bottom: 30px;
+   }
+   h3 {
+       margin-bottom: 2px;
+   }

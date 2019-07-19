@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Trip WIP Forecast</title>
+</head>
+
+<body>
+  <!-- Retrieved data will be dumped here -->
+  <div class="city"></div>
+  <div class="minTemp"></div>
+  <div class="maxTemp"></div>
+  <div class="humidity"></div>
+  <div class="weather"></div>
+  <div class="wind"></div>
+  <div class="rain"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    //  This is our API key
+    var APIKey = "d2f6cebcdd5a345807c7261778eaadb4";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
+      "q=hawi&units=imperial&appid=" + APIKey;
+
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      // We store all of the retrieved data inside of an object called "response"
+      .then(function(response) {
+
+        // Log the queryURL
+        console.log(queryURL);
+
+        // Log the resulting object
+        console.log(response);
+        console.log(response.city.name);
+        console.log(response.list[0].weather[0].main);
+        console.log(response.list[0].wind.speed);
+        
+        var temp_minDaily= response.list[0].main.temp_min;
+
+        for(var i=0; i <=6; i++){
+            console.log(response.list[i].main.temp_min);
+           
+            if(temp_minDaily > response.list[i+1].main.temp_min){temp_minDaily = response.list[i+1].main.temp_min};
+        };
+
+        console.log("lowest T="temp_minDaily);
+
+        var temp_maxDaily= response.list[0].main.temp_max;
+        for(var i=0; i <= 6; i++){
+            console.log(response.list[i].main.temp_max);
+           
+            if(response.list[i].main.temp_max < response.list[i+1].main.temp_max){temp_maxDaily=response.list[i+1].main.temp_max};
+        };
+
+        for(var i=0; i <= 7; i++){
+              console.log(response.list[i].weather[i].main);
+              };
+       
+
+        var humididtyAll = 0;
+        for(var i=0; i <= 7; i++){
+            humididtyAll += response.list[i].main.humidity;
+        }
+        humididtyAll = humididtyAll / 8;
+
+
+        console.log(temp_minDaily);
+        console.log(temp_maxDaily);
+        console.log(humididtyAll + "%");
+
+
+        // Transfer content to HTML
+        $(".city").html("<h1>" + response.city.name + " Weather Details</h1>");
+        $(".minTemp").html("Min: " + temp_minDaily + "&#176;" + "F");
+        $(".maxTemp").html("Max: " + temp_maxDaily + "&#176;" + "F");
+        $(".weather").html("Skies: " + response.list[0].weather[0].description);
+        $(".humidity").html("Humidity: " + (Math.round(humididtyAll)) + "%");
+        $(".wind").html("Wind Speed: " + response.list[0].wind.speed + " mph");
+
+    });
+  </script>
+</body>
+
+</html>

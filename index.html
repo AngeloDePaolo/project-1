@@ -1,12 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <title>Trip WIP Forecast</title>
+  <link rel="stylesheet" href="../project-1/assets/css/style.css">
 </head>
+
 <body>
-    
+  <!-- Retrieved data will be dumped here -->
+  <div class="city"></div>
+
+  <div class="day0weather dayBreak"></div>
+  <div class="day1weather dayBreak"></div>
+  <div class="day2weather dayBreak"></div>
+  <div class="day3weather dayBreak"></div>
+  <div class="day4weather dayBreak"></div>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    //  This is our API key
+    var APIKey = "d2f6cebcdd5a345807c7261778eaadb4";
+
+    // Here we are building the URL we need to query the database
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
+      "q=seattle&units=imperial&appid=" + APIKey;
+
+    // Here we run our AJAX call to the OpenWeatherMap API
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    })
+      // We store all of the retrieved data inside of an object called "response"
+      .then(function(response) {
+
+        // Log the queryURL
+        console.log(queryURL);
+
+        // Log the resulting object
+        console.log(response);
+        var day;
+        $(".city").append("<h1>" + response.city.name + " Weather Details</h1>");
+
+        for(day=0; day < 5; day++){
+        
+        var temp_minDaily= response.list[day*8].main.temp_min;
+		var cnt=8;
+
+
+       /* for(var i=0; i <cnt; i++) {
+          if(response.list[i].weather[0].main.toLowerCase() === "rain") {
+            var rainImage = $('<img>');
+            rainImage.attr("src", "assets/images/rain.png");
+            rainImage.css("width", "200px");
+            
+            $('.rain').html(rainImage);
+
+            console.log("Caution! Rain!"); 
+            break;
+          }else{
+            var rainImage = $('<img>');
+            rainImage.attr("src", "assets/images/clear.png");
+            rainImage.attr("width", "200px");
+            
+            $('.rain').html(rainImage);
+
+          }
+        }*/
+		
+        for(var i=1; i <cnt; i++){
+            //console.log(response.list[i].main.temp_min);           
+            if(response.list[day*8+i].main.temp_min < temp_minDaily){temp_minDaily = response.list[day*8+i].main.temp_min};
+        };
+
+        var temp_maxDaily= response.list[day].main.temp_max;
+        for(var i=1; i <cnt; i++){
+            //console.log(response.list[i].main.temp_max);           
+            if(response.list[day*8+i].main.temp_max > temp_maxDaily){temp_maxDaily=response.list[day*8+i].main.temp_max};
+        };
+       
+
+        var humididtyAll = 0;
+        for(var i=0; i < cnt; i++){
+            humididtyAll += response.list[day*8].main.humidity;
+        }
+        humididtyAll = humididtyAll / cnt;
+
+
+
+
+        console.log(temp_minDaily);
+        console.log(temp_maxDaily);
+        console.log(humididtyAll + "%");
+		
+        // Transfer content to HTML
+       
+            
+        $('.day' + day + 'weather').html('<h3>Weather Info of Day '+ parseInt(day+1) +':</h3>'+
+            '<div class="minTemp lineBreak">' + "<img class='weatherIcons' src='assets/images/mintempicon.png' alt='minimum temperature icon'>Min: " + (Math.round(temp_minDaily)) + "&#176;" + "F" + '</div>' + 
+            '<div class="maxTemp lineBreak">' + "<img class='weatherIcons' src='assets/images/maxtempicon.png'>Max: " + (Math.round(temp_maxDaily)) + "&#176;" + "F" + '</div>' + 
+            '<div class="humidity lineBreak">' + "<img class='weatherIcons' src='assets/images/humidityicon.png'>Humidity: " + (Math.round(humididtyAll)) + "%" + '</div>' + 
+            '<div class="weather lineBreak">' + "<img class='weatherIcons' src='assets/images/skiesicon.png'>Skies: " + response.list[day*8].weather[0].description + '</div>' + 
+            '<div class="wind lineBreak">' + "<img class='weatherIcons' src='assets/images/windicon.png'>Wind Speed: " + response.list[day*8].wind.speed + " mph" + '</div>'
+        );
+
+        
+        // $(".minTemp").append("Min: " + (Math.round(temp_minDaily)) + "&#176;" + "F");
+        // $(".maxTemp").append("Max: " + (Math.round(temp_maxDaily)) + "&#176;" + "F");
+        // $(".weather").append("Skies: " + response.list[day*8].weather[0].description);
+        // $(".humidity").append("Humidity: " + (Math.round(humididtyAll)) + "%");
+        // $(".wind").append("Wind Speed: " + response.list[day*8].wind.speed + " mph");
+        }
+    });
+
+  </script>
 </body>
+
 </html>
