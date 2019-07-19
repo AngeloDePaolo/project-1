@@ -45,3 +45,16 @@ height: 300px;
 .card .card-content {
 width: 100%;
 }
+
+.weatherIcons {
+    width: 45px;
+    position: relative;
+    margin-bottom: -5px;
+}
+.lineBreak {
+    margin-bottom: 12px;
+    
+}
+.dayBreak {
+    margin-bottom: 30px;
+}
