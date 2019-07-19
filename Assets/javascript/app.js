@@ -60,7 +60,11 @@ $(document).ready(function () {
                 console.log(humididtyAll + "%");
 
                 // Transfer content to HTML
-                $('.day' + day + 'weather').html('Weather Info of Day ' + parseInt(day + 1) +
+
+                var momentDate = moment().add(day + 1, "days");
+    
+                
+                $('.day' + day + 'weather').html('Weather for ' + moment(momentDate).format("L") +
                     '<div class="minTemp lineBreak">' + "<img class='weatherIcons' src='Assets/images/mintempicon.png' alt='minimum temperature icon'>Min: " + (Math.round(temp_minDaily)) + "&#176;" + "F" + '</div>' +
                     '<div class="maxTemp lineBreak">' + "<img class='weatherIcons' src='Assets/images/maxtempicon.png'>Max: " + (Math.round(temp_maxDaily)) + "&#176;" + "F" + '</div>' +
                     '<div class="humidity lineBreak">' + "<img class='weatherIcons' src='Assets/images/humidityicon.png'>Humidity: " + (Math.round(humididtyAll)) + "%" + '</div>' +
