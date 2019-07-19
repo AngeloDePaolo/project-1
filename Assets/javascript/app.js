@@ -89,8 +89,11 @@ $(document).ready(function () {
                 var img = response.businesses[i].image_url;
                 var address = response.businesses[i].location.city + " " + response.businesses[i].location.state + " " + response.businesses[i].location.address1 + " " + response.businesses[i].location.zip_code;
                 var phoneNumber = response.businesses[i].display_phone;
+                var price = response.businesses[i].price;
+                var url = response.businesses[i].url;
 
-                $('#content').append('<div id="contentRow" class="row">' + '<div class="card horizontal">' + '<div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + img + '"></div>' + '<div class="card-content">' + '<span class="card-title activator grey-text text-darken-4">' + name + '<i class="material-icons right">More Info</i></span>' + '<div class="rating"><p>Rating:' + rating + ' Stars</p></div>' + '<div class="number"><p>Number: ' + phoneNumber + '</p></div>' + '<div class="address"><p>Address: ' + address + '</p></div></div>' + '<div class="card-reveal"><span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span><p>Here is some more information about this product that is only revealed once clicked on.</p></div></div></div>');
+                $('#content').append('<div id="contentRow" class="row">' + '<div class="card horizontal">' + '<div class="card-image waves-effect waves-block waves-light">' + '<img class="activator" src="' + img + '"></div>' + '<div class="card-content">' + '<span class="card-title activator grey-text text-darken-4">' + name + '<i class="material-icons right">More Info</i></span>' + '<div class="rating"><p>Rating: ' + rating + ' Stars</p></div>' + '<div class="number"><p>Number: ' + phoneNumber + '</p></div>' + '<div class="address"><p>Address: ' + address + '</p></div></div>' + '<div class="card-reveal"><span class="card-title grey-text text-darken-4">' + name + '<i class="material-icons right">close</i></span><p>'+ 'price level: ' + price + '<br>' + '<a href =' + url +'>Yelp Page</a>' +  '</p></div></div></div>');
+
             }
         });
     });
