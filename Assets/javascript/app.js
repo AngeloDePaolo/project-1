@@ -10,14 +10,68 @@ $(document).ready(function () {
     $(document).on('click', '#submit', function (event) {
 
         // (in addition to clicks). Prevents the page from reloading on form submit.
+        $("#content").html("");
         event.preventDefault();
         selectedState = $("#state option:selected").text();
         selectedCity = $("#city").val();
         selectedZip = $('#zipCode').val();
 
+        var APIKey = "d2f6cebcdd5a345807c7261778eaadb4";
+        var weatherQueryURL = "https://api.openweathermap.org/data/2.5/forecast?" +
+            "q=" + selectedCity + "&units=imperial&appid=" + APIKey;
+        // We store all of the retrieved data inside of an object called "response"
+        $.ajax({
+            url: weatherQueryURL,
+            method: "GET"
+        }).then(function (response) {
+
+            // Log the queryURL
+            console.log(queryURL);
+
+            // Log the resulting object
+            console.log(response);
+            var day;
+            $(".city").html(response.city.name + " Weather Details");
+
+            for (day = 0; day < 5; day++) {
+
+                var temp_minDaily = response.list[day * 8].main.temp_min;
+                var cnt = 8;
+
+                for (var i = 1; i < cnt; i++) {
+                    //console.log(response.list[i].main.temp_min);           
+                    if (response.list[day * 8 + i].main.temp_min < temp_minDaily) { temp_minDaily = response.list[day * 8 + i].main.temp_min };
+                };
+
+                var temp_maxDaily = response.list[day].main.temp_max;
+                for (var i = 1; i < cnt; i++) {
+                    //console.log(response.list[i].main.temp_max);           
+                    if (response.list[day * 8 + i].main.temp_max > temp_maxDaily) { temp_maxDaily = response.list[day * 8 + i].main.temp_max };
+                };
+
+                var humididtyAll = 0;
+                for (var i = 0; i < cnt; i++) {
+                    humididtyAll += response.list[day * 8].main.humidity;
+                }
+                humididtyAll = humididtyAll / cnt;
+
+                console.log(temp_minDaily);
+                console.log(temp_maxDaily);
+                console.log(humididtyAll + "%");
+
+                // Transfer content to HTML
+                $('.day' + day + 'weather').html('Weather Info of Day ' + parseInt(day + 1) +
+                    '<div class="minTemp lineBreak">' + "<img class='weatherIcons' src='assets/images/mintempicon.png' alt='minimum temperature icon'>Min: " + (Math.round(temp_minDaily)) + "&#176;" + "F" + '</div>' +
+                    '<div class="maxTemp lineBreak">' + "<img class='weatherIcons' src='assets/images/maxtempicon.png'>Max: " + (Math.round(temp_maxDaily)) + "&#176;" + "F" + '</div>' +
+                    '<div class="humidity lineBreak">' + "<img class='weatherIcons' src='assets/images/humidityicon.png'>Humidity: " + (Math.round(humididtyAll)) + "%" + '</div>' +
+                    '<div class="weather lineBreak">' + "<img class='weatherIcons' src='assets/images/skiesicon.png'>Skies: " + response.list[day * 8].weather[0].description + '</div>' +
+                    '<div class="wind lineBreak">' + "<img class='weatherIcons' src='assets/images/windicon.png'>Wind Speed: " + response.list[day * 8].wind.speed + " mph" + '</div>'
+                );
+            }
+        });
 
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location="+ selectedCity + selectedState + " " + selectedZip + "&limit=10&sort_by=rating";
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + selectedCity + selectedState + " " + selectedZip + "&limit=10&sort_by=rating";
 
         console.log(queryURL);
         //ajax call to obtain data
