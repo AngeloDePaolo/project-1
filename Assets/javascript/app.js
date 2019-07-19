@@ -61,11 +61,11 @@ $(document).ready(function () {
 
                 // Transfer content to HTML
                 $('.day' + day + 'weather').html('Weather Info of Day ' + parseInt(day + 1) +
-                    '<div class="minTemp lineBreak">' + "<img class='weatherIcons' src='assets/images/mintempicon.png' alt='minimum temperature icon'>Min: " + (Math.round(temp_minDaily)) + "&#176;" + "F" + '</div>' +
-                    '<div class="maxTemp lineBreak">' + "<img class='weatherIcons' src='assets/images/maxtempicon.png'>Max: " + (Math.round(temp_maxDaily)) + "&#176;" + "F" + '</div>' +
-                    '<div class="humidity lineBreak">' + "<img class='weatherIcons' src='assets/images/humidityicon.png'>Humidity: " + (Math.round(humididtyAll)) + "%" + '</div>' +
-                    '<div class="weather lineBreak">' + "<img class='weatherIcons' src='assets/images/skiesicon.png'>Skies: " + response.list[day * 8].weather[0].description + '</div>' +
-                    '<div class="wind lineBreak">' + "<img class='weatherIcons' src='assets/images/windicon.png'>Wind Speed: " + response.list[day * 8].wind.speed + " mph" + '</div>'
+                    '<div class="minTemp lineBreak">' + "<img class='weatherIcons' src='Assets/images/mintempicon.png' alt='minimum temperature icon'>Min: " + (Math.round(temp_minDaily)) + "&#176;" + "F" + '</div>' +
+                    '<div class="maxTemp lineBreak">' + "<img class='weatherIcons' src='Assets/images/maxtempicon.png'>Max: " + (Math.round(temp_maxDaily)) + "&#176;" + "F" + '</div>' +
+                    '<div class="humidity lineBreak">' + "<img class='weatherIcons' src='Assets/images/humidityicon.png'>Humidity: " + (Math.round(humididtyAll)) + "%" + '</div>' +
+                    '<div class="weather lineBreak">' + "<img class='weatherIcons' src='Assets/images/skiesicon.png'>Skies: " + response.list[day * 8].weather[0].description + '</div>' +
+                    '<div class="wind lineBreak">' + "<img class='weatherIcons' src='Assets/images/windicon.png'>Wind Speed: " + response.list[day * 8].wind.speed + " mph" + '</div>'
                 );
             }
         });
