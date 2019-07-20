@@ -75,7 +75,7 @@ $(document).ready(function () {
         });
 
 
-        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + selectedCity + selectedState + " " + selectedZip + "&limit=10&sort_by=rating";
+        var queryURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=restaurants&location=" + selectedCity + selectedState + " " + selectedZip + "&limit=10&sort_by=best_match";
 
         console.log(queryURL);
         //ajax call to obtain data
